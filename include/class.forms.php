@@ -1822,7 +1822,7 @@ class DatetimeField extends FormField {
     function display($value) {
         global $cfg;
 
-        if (!$value || !($datetime = Format::parseDateTime($value)))
+        if (!$value || !($datetime = Format::parseDatetime($value)))
             return '';
 
         $config = $this->getConfiguration();
@@ -1933,14 +1933,14 @@ class DatetimeField extends FormField {
 
         $config = $this->getConfiguration();
         parent::validateEntry($value);
-        if (!$value || !($datetime = Format::parseDateTime($value)))
+        if (!$value || !($datetime = Format::parseDatetime($value)))
             return;
 
         // Parse value to DateTime object
-        $val = Format::parseDateTime($value);
+        $val = Format::parseDatetime($value);
         // Get configured min/max (if any)
-        $min = $this->getMinDateTime();
-        $max = $this->getMaxDateTime();
+        $min = $this->getMinDatetime();
+        $max = $this->getMaxDatetime();
 
         if (!$val) {
             $this->_errors[] = __('Enter a valid date');
